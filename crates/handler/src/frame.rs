@@ -150,8 +150,7 @@ where
         Precompiles: PrecompileProvider<EVM::Context, Output = InterpreterResult>,
         Instructions: InstructionProvider,
     >,
-    ERROR: From<ContextTrDbError<EVM::Context>>,
-    ERROR: FromStringError,
+    ERROR: From<ContextTrDbError<EVM::Context>> + FromStringError,
 {
     /// Make call frame
     #[inline]
