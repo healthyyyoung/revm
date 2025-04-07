@@ -373,7 +373,7 @@ impl DbAccount {
 
 impl From<Option<AccountInfo>> for DbAccount {
     fn from(from: Option<AccountInfo>) -> Self {
-        from.map(Self::from).unwrap_or_else(Self::new_not_existing)
+        from.map_or_else(Self::new_not_existing, Self::from)
     }
 }
 

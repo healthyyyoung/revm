@@ -457,8 +457,7 @@ impl<ENTRY: JournalEntryTr> JournalInner<ENTRY> {
             Entry::Occupied(entry) => entry.into_mut(),
             Entry::Vacant(vac) => vac.insert(
                 db.basic(address)?
-                    .map(|i| i.into())
-                    .unwrap_or(Account::new_not_existing()),
+                    .map_or(Account::new_not_existing(), |i| i.into()),
             ),
         };
         // preload storages.
